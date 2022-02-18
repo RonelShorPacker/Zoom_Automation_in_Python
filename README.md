@@ -7,7 +7,7 @@ This python script will automatically enter your zoom meetings and send a messag
 
 * Clone the GitHub repo
 ```
-git clone 
+git clone https://github.com/RonelShorPacker/Zoom_Automation_in_Python.git
 ```
 
 * cd into the directory
@@ -25,7 +25,10 @@ img = pyautogui.screenshot(f'{path_to_screenshots_dir}/{file_name}.png')
 ```
 
 * Update the timings.csv with the time of the meeting, meeting url and the message you want to send(optional), for example:
-* 18/02; 12:00, {meeting_url}, Hello World
+```
+timings, meeting_url, message
+18/02; 12:00, {meeting_url}, Hello World
+```
 
 * run main.py, if your on linux, you can run it in the backround with the following command in the terminal(I will add for window users in the future):
 ```
@@ -34,5 +37,7 @@ chmod +x main.py
 nohup {path_to_project}/main.py > output.log &
 ```
 If you want to kill the script, you can find the proccess ID and kill it with these commands in the terminal:
+```
 ps ax | grep main.py
 kill PID
+```
