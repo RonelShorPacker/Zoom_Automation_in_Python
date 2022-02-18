@@ -58,45 +58,7 @@ def zoom(cfg, meeting_url: str, msg: str=None):
         img_bug = pyautogui.screenshot(f'{cfg.directories.bugs_dir}/join_without_video_bug.png')
         return 0
 
-    """
-    waiting_for_host_first = False
-    waiting_for_host_first_counter = 0
-    while waiting_for_host_first:
-        waiting_for_host_txt = pyautogui.locateCenterOnScreen('./screenshots_dir/please_wait_txt.png', confidence=0.8)
-        if not waiting_for_host_txt:
-            waiting_for_host_first_counter += 1
-            if waiting_for_host_first_counter>=1000:
-                print("Host didn't authorize entrance or a bug in code, will take screenshot for future development")
-                img_bug = pyautogui.screenshot('{cfg.directories.bugs_dir}/please_wait_bug.png')
-                return
-            continue
-        else:
-            break
-    """
-    """
-    waiting_for_host = False
-    waiting_for_host_counter = 0
-    while not waiting_for_host:
-        print(waiting_for_host_counter)
-        waiting_for_host_txt = pyautogui.locateCenterOnScreen('./screenshots_dir/please_wait_txt.png', confidence=0.8)
-        print(waiting_for_host_txt)
-        if not (waiting_for_host_txt != None):
-            break
-    """
-    """print("Couldn't find please wait, probably the host has authorized entrance to zoom")
-        im = pyautogui.screenshot(f'./bug/{waiting_for_host_counter}.png')
-        waiting_for_host_counter += 1
-        if waiting_for_host_counter >= 5:
-            waiting_for_host = True"""
-
     time.sleep(cfg.time_breaks.time4)
-
-    """try:
-        chat_btn = pyautogui.locateCenterOnScreen('./screenshots_dir/chat_btn.png', confidence=0.8)
-        assert chat_btn
-        pyautogui.moveTo(join_without_video_btn)
-        pyautogui.click()
-    except:"""
     
     # waiting for host to authorize entrance
     start_waiting = time.time()
@@ -112,13 +74,6 @@ def zoom(cfg, meeting_url: str, msg: str=None):
             break
 
     time.sleep(cfg.time_breaks.time5)
-    """try:
-        is_in_zoom_confirm = pyautogui.locateCenterOnScreen('./screenshots_dir/entered_zoom_confirmation.png', confidence=0.8)
-        assert is_in_zoom_confirm
-    except:
-        print("Didn't enter zoom, something went wrong, will do screenshot for future development")
-        img_bug = pyautogui.screenshot('{cfg.directories.bugs_dir}/entered_zoom_confirmation_bug.png')
-        return"""
     
     # opening chat
     try:
@@ -147,7 +102,7 @@ def zoom(cfg, meeting_url: str, msg: str=None):
             break
         except:
             print("Couldn't find type message, will do screenshot for future development")
-            img_bug = pyautogui.screenshot('{cfg.directories.bugs_dir}/green_check_btn.png')
+            img_bug = pyautogui.screenshot(f'{cfg.directories.bugs_dir}/green_check_btn_bug.png')
             if num_tries >= 5:
                 print("Failed to write message")
                 return 0
@@ -156,7 +111,7 @@ def zoom(cfg, meeting_url: str, msg: str=None):
 
     # Leaving meeting
     try:
-        x_btn = pyautogui.locateCenterOnScreen(f'{cfg.directories.screenshots_dir_dir}/screenshots_dir/x_btn.png', confidence=0.8)
+        x_btn = pyautogui.locateCenterOnScreen(f'{cfg.directories.screenshots_dir}/screenshots_dir/x_btn.png', confidence=0.8)
         assert x_btn
         pyautogui.moveTo(x_btn)
         pyautogui.click()  
@@ -166,7 +121,7 @@ def zoom(cfg, meeting_url: str, msg: str=None):
         return 0
 
     try:
-        leave_btn = pyautogui.locateCenterOnScreen(f'{cfg.directories.screenshots_dir_dir}/leave_btn.png', confidence=0.8)
+        leave_btn = pyautogui.locateCenterOnScreen(f'{cfg.directories.screenshots_dir}/leave_btn.png', confidence=0.8)
         assert leave_btn
         pyautogui.moveTo(leave_btn)
         pyautogui.click()
