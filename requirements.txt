@@ -1,0 +1,5 @@
+pyautogui==0.9.53
+pandas==1.4.1
+opencv-python==4.5.5.62
+requests==2.27.1
+hydra-core==1.1.1
