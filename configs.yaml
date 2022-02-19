@@ -8,7 +8,7 @@ time_breaks:
   time7: 0.5
   time_meeting: 5
 directories:
-  work_dir: C:/coursera projects/Zoom_Automation_in_Python
+  work_dir: /home/ronel/PycharmProjects/Zoom_Automation_in_Python
   screenshots_dir: ${directories.work_dir}/screenshots/${operating_system.os}
   bugs_dir: ${directories.work_dir}/bugs
 meetings:
@@ -22,6 +22,5 @@ params:
   number_pixels_x_from_green_check: 50
   number_pixels_y_from_green_check: 50
 operating_system:
-  os: windows
-  os_type: 10
+  os: ubuntu
 
