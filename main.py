@@ -6,7 +6,6 @@ import webbrowser
 import requests
 import hydra
 import os
-import win32api
 
 def zoom(cfg, meeting_url: str, msg: str=None, leave_after_amount_of_time: bool = True):
     """
