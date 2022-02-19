@@ -11,7 +11,7 @@ git clone https://github.com/RonelShorPacker/Zoom_Automation_in_Python.git
 ```
 
 * cd into the directory
-* Install required libraries
+* Install required libraries(if one of them doesn't have an updated version in your os, change the version to the last updated one).
 ```
 pip3 install -r requirements.txt
 ```
@@ -20,7 +20,9 @@ pip3 install -r requirements.txt
 * For every screenshot in the screenshots directory, update it with your own screenshots with pyautogui library with this script(you will have to open a zoom by youself and screenshot each stage):
 ```
 import pyautogui
+import time
 
+time.sleep(5)
 img = pyautogui.screenshot(f'{path_to_screenshots_dir}/{file_name}.png')
 ```
 
