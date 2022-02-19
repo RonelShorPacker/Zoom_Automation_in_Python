@@ -22,7 +22,7 @@ def zoom(cfg, meeting_url: str, msg: str=None, leave_after_amount_of_time: bool 
         return 0
 
     # opening zoom meeting via url
-    if cfg.operating_system.os == 'linux' and cfg.operating_system.os_type == 'ubuntu':
+    if cfg.operating_system.os == 'ubuntu':
         webbrowser.open_new(meeting_url)
     elif cfg.operating_system.os == 'windows':
         webbrowser.get('C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s &').open(meeting_url)
@@ -32,7 +32,7 @@ def zoom(cfg, meeting_url: str, msg: str=None, leave_after_amount_of_time: bool 
 
     time.sleep(cfg.time_breaks.time1)
 
-    if cfg.operating_system.os_type == 'ubuntu':
+    if cfg.operating_system.os == 'ubuntu':
         # Sometimes in ubuntu it doesn't always open the browser on screen
         open_firefox_btn = pyautogui.locateCenterOnScreen(f'{cfg.directories.screenshots_dir}/open_firefox_btn.png', confidence=0.8)
         if open_firefox_btn:
@@ -145,7 +145,7 @@ def zoom(cfg, meeting_url: str, msg: str=None, leave_after_amount_of_time: bool 
     # Leaving meeting
     if cfg.operating_system.os == 'windows':
         os.system("taskkill /f /im  Zoom.exe")
-    elif cfg.operating_system.os == 'linux':
+    elif cfg.operating_system.os == 'ubuntu':
         num_tries = 0
         while True:
                 try:
@@ -181,6 +181,7 @@ def main(cfg):
 
     while True:
         now = datetime.now().strftime("%d.%m; %H:%M")
+        print(now)
         if now in str(df['timings']):
             print("There is a meeting scheduled now")
             row = df.loc[df['timings'] == now]
