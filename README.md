@@ -31,7 +31,7 @@ img = pyautogui.screenshot(f'{path_to_screenshots_dir}/{file_name}.png')
 sudo apt install gthumb
 ```
 
-* If you are in windows, I recommend
+* If you are in windows, I recommend using Photos.
 * Update the timings.csv with the time of the meeting, meeting url and the message you want to send(optional), for example:
 ```
 timings, meeting_url, message
