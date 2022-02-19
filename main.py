@@ -21,7 +21,13 @@ def zoom(cfg, meeting_url: str, msg: str=None):
         return 0
 
     # opening zoom meeting via url
-    webbrowser.open_new(meeting_url)
+    if cfg.operating_system.os == 'linux' and cfg.operating_system.os_type == 'ubuntu':
+        webbrowser.open_new(meeting_url)
+    elif cfg.operating_system.os == 'windows':
+        webbrowser.get('C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s').open(meeting_url)
+    else:
+        print("This script may not work in your operating system")
+        return 0
 
     time.sleep(cfg.time_breaks.time1)
 
@@ -64,6 +70,7 @@ def zoom(cfg, meeting_url: str, msg: str=None):
     start_waiting = time.time()
     while True:
         green_check_meeting_btn = pyautogui.locateCenterOnScreen(f'{cfg.directories.screenshots_dir}/green_check_btn.png', confidence=0.8)
+        print(green_check_meeting_btn)
         if not green_check_meeting_btn:
             if time.time() - start_waiting > cfg.params.patience:
                 print("Bug or host didn't authorize entrance before maximum patience, will take screenshot for future development")
@@ -74,7 +81,10 @@ def zoom(cfg, meeting_url: str, msg: str=None):
             break
 
     time.sleep(cfg.time_breaks.time5)
-    
+
+    # sometimes the zoom doesn't open on full screen, so we need to move the mouse so it will be in the zoom
+    pyautogui.moveTo(green_check_meeting_btn.x, green_check_meeting_btn.y + cfg.params.number_pixels_y_from_green_check)
+
     # opening chat
     try:
         pyautogui.rightClick()
@@ -140,6 +150,7 @@ def main(cfg):
     while True:
         now = datetime.now().strftime("%d.%m; %H:%M")
         if now in str(df['timings']):
+            print("There is a meeting scheduled now")
             row = df.loc[df['timings'] == now]
             m_url = str(row.iloc[0, 1])
             m_message = str(row.iloc[0, 2])
